@@ -1,16 +1,14 @@
-// compile add_two.c to a dll file with mingw:
+// compile add_two.c to a dll file with mingw, which can be used in Python with ctypes
 //    gcc -shared -o add_two.dll add_two.c
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> // For malloc
 
-
 // Function to add 2.0 to a float number
 float add_two_c(float number) {
     return number + 2.0;
 }
-
 
 // Function to add 2.0 to each element of a double array
 double* add_two_array_c(double* arr, int size) {
@@ -19,7 +17,6 @@ double* add_two_array_c(double* arr, int size) {
     }
     return arr; // Return the pointer to the modified array
 }
-
 
 // Function to concatenate two strings
 char* add_two_strings_c(const char* s1, const char* s2) {
