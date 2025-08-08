@@ -6,6 +6,6 @@ first example of a python library written in c
     - Adds 2.0 to a list
     - Adds/combines two strings together
 
-- compile add_two.c to a dll file with mingw:
-    gcc -shared -o add_two.dll add_two.c
+- compile add_two.cpp to a dll file with mingw:
+    g++ -shared -o add_two.dll add_two.cpp
 
