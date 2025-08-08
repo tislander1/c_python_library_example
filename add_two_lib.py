@@ -24,14 +24,16 @@ class AddTwoLib:
         return result_list
 
     def add_two_strings(self, str1, str2):
-        #convert Python strings to byte strings
         c_string1 = ctypes.c_char_p(str1.encode('utf-8'))
         c_string2 = ctypes.c_char_p(str2.encode('utf-8'))
         self.lib.add_two_strings_c.argtypes = [ctypes.c_char_p, ctypes.c_char_p]
-        self.lib.add_two_strings_c.restype = ctypes.c_char_p
+        self.lib.add_two_strings_c.restype = ctypes.c_void_p
         concatenated_string_ptr = self.lib.add_two_strings_c(c_string1, c_string2)
-        # Convert the result back to a Python string
-        concatenated_string = concatenated_string_ptr.decode('utf-8')
+        concatenated_string = ctypes.string_at(concatenated_string_ptr).decode('utf-8')
+        # Use the DLL's free function
+        self.lib.free_c_string.argtypes = [ctypes.c_void_p]
+        self.lib.free_c_string.restype = None
+        self.lib.free_c_string(concatenated_string_ptr)
         return concatenated_string
 
 if __name__ == "__main__":

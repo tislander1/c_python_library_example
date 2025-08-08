@@ -36,3 +36,8 @@ char* add_two_strings_c(const char* s1, const char* s2) {
     strcat(result, s2);
     return result;
 }
+
+// Function to free memory allocated by add_two_strings_c
+void free_c_string(char* ptr) {
+    free(ptr);
+}
